@@ -9,4 +9,5 @@ build:
  ci:
   - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   - apt update && apt upgrade && apt install git build-essential cmake qt5-qmake
+  - find / -name qmake
   - chmod +x bootstrap && mkdir ../cmake-source && mv * ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build && ../cmake-source/bootstrap && make -j$(nproc)
