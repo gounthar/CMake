@@ -8,7 +8,7 @@ runtime:
 build:
  ci:
   - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran
+  - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive-tools expat
   - chmod +x bootstrap && mkdir ../cmake-source && mv * ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
   - ../cmake-source/bootstrap
   - make -j$(nproc)
