@@ -7,5 +7,5 @@ runtime:
  
 build:
  ci:
-  - apt update && apt upgrade && apt install git build-essentials
+  - apt update && apt upgrade && apt install git build-essential
   - mkdir cmake-build && cd cmake-build && ../cmake-source/bootstrap && make -j$(nproc)
