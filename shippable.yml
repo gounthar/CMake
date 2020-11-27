@@ -11,7 +11,7 @@ env:
 build:
  ci:
   - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  - echo "ssl:check-hostname no" > ~/.lftprc && cat ~/.lftprc
+  - echo "set ssl:check-hostname no" > ~/.lftprc && cat ~/.lftprc
   - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive13 expat lftp
   - lftp -e 'put bootstrap; bye' -u $FTP_USERNAME,$FTP_USERNAME $FTP_HOST $FTP_USERNAME 
   - chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
