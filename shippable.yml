@@ -11,5 +11,5 @@ build:
   - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive13  expat
   - chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
   - ../cmake-source/bootstrap && make -j$(nproc)
-  - apt install npm
+  - cd ~ && curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh && sudo apt-get install nodejs
   - npm init release-it
