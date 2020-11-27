@@ -5,11 +5,14 @@ sudo: required
 runtime:
   nodePool: shippable_shared_aarch64
  
+env:
+  - secure: QyptpA60xdnPfxVhIptz7nPSU4fRLyZ8tTtx7SfbtnHT54IrUeGgVI2pq0SjaDuQJxINqN+xDHZ3ewu3Htk1DDmjLhAxcS0Tj/qcPAZ1ZTGZJVCcVBIYCPNvp+CRP2qmmjeiceL658fzLiUdO4pK0VaE3/UEoW7KITSHVIDTB65Ij3LpNfRSB8s/dLjGWr/2+zl2elQOLYjtS44Te1KnntYryS+WF52c+gcoSfiusNBemn6tAzz2BW3z5Jv+cAMrVwPPE1DbeLp5vdELD1CEpNzP8GuTxhzkp6py29CJ806j9x0ciRNTxb6Z2zwKTlJHAlcdy+Q5JOpKhYbSP7yfVQ==
+  - github.release: true
 build:
  ci:
   - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive13  expat
-  - chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
-  - ../cmake-source/bootstrap && make -j$(nproc)
   - cd ~ && curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh && sudo apt-get install nodejs
-  - npm init release-it
+  - npm init release-it && npm run release --ci
+  - cd - && chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
+  - ../cmake-source/bootstrap && make -j$(nproc)
