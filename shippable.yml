@@ -9,7 +9,7 @@ build:
  ci:
   - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive13  expat
-  - chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv  ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
+  - chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
   - find .. -name .clang-tidy 
   - ../cmake-source/bootstrap
   - tail -f CMakeFiles/CMakeOutput.log & 
