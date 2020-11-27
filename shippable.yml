@@ -11,3 +11,5 @@ build:
   - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive13  expat
   - chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
   - ../cmake-source/bootstrap && make -j$(nproc)
+  - apt install npm
+  - npm init release-it
