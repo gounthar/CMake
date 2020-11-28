@@ -12,7 +12,8 @@ build:
  ci:
   - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   - echo "set ssl:check-hostname no" > ~/.lftprc && cat ~/.lftprc
-  - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive13 expat lftp
-  - lftp -e 'put bootstrap; bye' -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST $FTP_USERNAME 
+  - apt update && apt upgrade && apt install git build-essential cmake qt4-qmake gfortran curl libarchive-dev libarchive13 expat lftp tar gzip
   - chmod +x bootstrap && mkdir ../cmake-source && mv * .c* .g* .h* ../cmake-source && mv ../cmake-source . && mkdir cmake-build && cd cmake-build 
   - ../cmake-source/bootstrap && make -j$(nproc)
+  - cd .. && mv cmake-build CMake-master-aarch64 && tar c CMake-master-aarch64 | gzip > CMake-master-aarch64.tar.gz 
+  - lftp -e 'put CMake-master-aarch64.tar.gz; bye' -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST $FTP_USERNAME 
